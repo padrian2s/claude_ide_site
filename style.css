@@ -797,6 +797,16 @@ section {
 .copy-btn.copied {
     background: var(--accent-green);
     color: var(--bg-dark);
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(184, 187, 38, 0.5);
+}
+
+.copy-btn .material-icons {
+    transition: transform 0.2s ease;
+}
+
+.copy-btn.copied .material-icons {
+    transform: scale(1.2);
 }
 
 .copy-btn svg {

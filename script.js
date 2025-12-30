@@ -42,13 +42,38 @@ document.addEventListener('keydown', (e) => {
 // Copy install command to clipboard
 function copyInstall() {
     const cmd = document.getElementById('install-cmd').textContent;
+    const btn = document.querySelector('.copy-btn');
+    const icon = btn.querySelector('.material-icons');
+    const text = btn.querySelector('.copy-text');
+
     navigator.clipboard.writeText(cmd).then(() => {
-        const btn = document.querySelector('.copy-btn');
-        const text = btn.querySelector('.copy-text');
+        // Visual feedback
         btn.classList.add('copied');
+        icon.textContent = 'check_circle';
         text.textContent = 'Copied!';
+
+        // Reset after 2 seconds
         setTimeout(() => {
             btn.classList.remove('copied');
+            icon.textContent = 'content_copy';
+            text.textContent = 'Copy';
+        }, 2000);
+    }).catch(() => {
+        // Fallback for older browsers
+        const textarea = document.createElement('textarea');
+        textarea.value = cmd;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        btn.classList.add('copied');
+        icon.textContent = 'check_circle';
+        text.textContent = 'Copied!';
+
+        setTimeout(() => {
+            btn.classList.remove('copied');
+            icon.textContent = 'content_copy';
             text.textContent = 'Copy';
         }, 2000);
     });
