@@ -177,6 +177,68 @@ body {
     color: var(--accent-cyan);
 }
 
+/* Video Preview */
+.video-preview {
+    padding: 20px;
+    background: linear-gradient(180deg, #1a1a2e 0%, var(--bg-dark) 100%);
+    display: flex;
+    justify-content: center;
+}
+
+.video-preview-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--bg-medium);
+    padding: 16px 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--bg-lighter);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 400px;
+    width: 100%;
+}
+
+.video-preview-card:hover {
+    border-color: var(--accent-cyan);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(142, 192, 124, 0.15);
+}
+
+.video-preview-card:hover .video-icon .material-icons {
+    color: var(--accent-green);
+    transform: scale(1.1);
+}
+
+.video-icon .material-icons {
+    font-size: 48px;
+    color: var(--accent-cyan);
+    transition: all 0.3s ease;
+}
+
+.video-info h3 {
+    font-size: 1rem;
+    color: var(--fg-main);
+    margin-bottom: 4px;
+}
+
+.video-info p {
+    font-size: 0.85rem;
+    color: var(--fg-muted);
+    margin: 0;
+}
+
+.expand-icon {
+    margin-left: auto;
+    color: var(--fg-muted);
+    transition: transform 0.3s ease;
+}
+
+.video-preview-card:hover .expand-icon {
+    transform: translateY(4px);
+    color: var(--accent-cyan);
+}
+
 /* Status Bar Preview */
 .status-preview {
     background: var(--bg-medium);
