@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude IDE - Your Terminal, Reimagined</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="terminal-window hero-terminal">
+            <div class="terminal-header">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+                <span class="terminal-title">claude-ide</span>
+            </div>
+            <div class="terminal-content">
+                <pre class="ascii-art">
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║    ██████╗██╗      █████╗ ██╗   ██╗██████╗ ███████╗    ██╗██████╗ ███████╗     ║
+║   ██╔════╝██║     ██╔══██╗██║   ██║██╔══██╗██╔════╝    ██║██╔══██╗██╔════╝     ║
+║   ██║     ██║     ███████║██║   ██║██║  ██║█████╗      ██║██║  ██║█████╗       ║
+║   ██║     ██║     ██╔══██║██║   ██║██║  ██║██╔══╝      ██║██║  ██║██╔══╝       ║
+║   ╚██████╗███████╗██║  ██║╚██████╔╝██████╔╝███████╗    ██║██████╔╝███████╗     ║
+║    ╚═════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝    ╚═╝╚═════╝ ╚══════╝     ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝</pre>
+                <h1>Your Terminal, Reimagined</h1>
+                <p class="tagline">A complete workspace that lives in your terminal.<br>No browser. No Electron. Just pure productivity.</p>
+                <div class="cta-buttons">
+                    <a href="#get-started" class="btn btn-primary">Get Started</a>
+                    <a href="#features" class="btn btn-secondary">Explore Features</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Status Bar Preview -->
+    <section class="status-preview">
+        <div class="status-bar">
+            <span class="status-item active">F1:Term1</span>
+            <span class="status-item">F2:Term2</span>
+            <span class="status-item">F3:Tree</span>
+            <span class="status-item">F4:Lizard</span>
+            <span class="status-item">F5:Glow</span>
+            <span class="status-item">F6:Favs</span>
+            <span class="status-item">F7:Prompt</span>
+            <span class="status-item">F9:Config</span>
+            <span class="status-item special">F10:Exit</span>
+            <span class="status-item special">F12:Keys</span>
+        </div>
+        <p class="status-hint">Press an F-key. You're there.</p>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="features">
+        <h2 class="section-title">The Ecosystem</h2>
+
+        <div class="features-grid">
+            <!-- F1/F2 Terminals -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <span class="fkey">F1</span><span class="fkey">F2</span>
+                </div>
+                <h3>Twin Terminals</h3>
+                <p>Two shells. Always ready.</p>
+                <ul>
+                    <li>Run Claude Code in F1</li>
+                    <li>Run backend/frontend in F2</li>
+                    <li>Switch instantly with a keypress</li>
+                </ul>
+                <div class="feature-terminal">
+                    <code>$ claude-code --interactive</code>
+                </div>
+            </div>
+
+            <!-- F3 Tree View -->
+            <div class="feature-card featured">
+                <div class="feature-icon">
+                    <span class="fkey">F3</span>
+                </div>
+                <h3>Tree View + Navigator</h3>
+                <p>File browser, code viewer, and dual-panel commander.</p>
+                <div class="feature-terminal mini">
+<pre>┌──────────────┬─────────────────────┐
+│ src/         │ // Your code here   │
+│   api/       │ // Syntax highlight │
+│   utils/     │ // Scroll with j/k  │
+└──────────────┴─────────────────────┘
+<span class="dim">Press m for Commander mode:</span>
+┌─────────────────┬─────────────────┐
+│ ~/project/src   │ ~/project/dist  │
+├─────────────────┼─────────────────┤
+│ ▸ api/          │   bundle.js     │
+│   utils/        │   index.html    │
+│ <span class="selected">● main.py</span>       │   styles.css    │
+└─────────────────┴─────────────────┘</pre>
+                </div>
+                <div class="shortcuts">
+                    <span class="shortcut"><kbd>Ctrl+P</kbd> Fuzzy find</span>
+                    <span class="shortcut"><kbd>Ctrl+F</kbd> Grep search</span>
+                    <span class="shortcut"><kbd>m</kbd> Commander</span>
+                </div>
+                <div class="commander-features">
+                    <span class="cmd-feat"><span class="material-icons">content_copy</span> Copy</span>
+                    <span class="cmd-feat"><span class="material-icons">drive_file_rename_outline</span> Rename</span>
+                    <span class="cmd-feat"><span class="material-icons">delete</span> Delete</span>
+                    <span class="cmd-feat"><span class="material-icons">select_all</span> Multi-select</span>
+                </div>
+            </div>
+
+            <!-- F4 Lizard -->
+            <div class="feature-card featured">
+                <div class="feature-icon">
+                    <span class="fkey">F4</span>
+                </div>
+                <h3>Lizard - Code Complexity</h3>
+                <p>Know your code's health at a glance.</p>
+                <div class="feature-terminal mini">
+<pre>│ File           │ Func          │ CC │
+├────────────────┼───────────────┼────┤
+│ auth.py        │ validate_token│ 12 │ <span class="danger">!!</span>
+│ user.py        │ create_user   │  4 │ <span class="success">ok</span></pre>
+                </div>
+                <div class="metrics">
+                    <span class="metric"><strong>CC</strong> Cyclomatic Complexity</span>
+                    <span class="metric"><strong>LOC</strong> Lines of Code</span>
+                </div>
+            </div>
+
+            <!-- F5 Glow -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <span class="fkey">F5</span>
+                </div>
+                <h3>Glow - Markdown Viewer</h3>
+                <p>Beautiful docs in your terminal.</p>
+                <ul>
+                    <li>README files that look good</li>
+                    <li>Syntax highlighting</li>
+                    <li>Never leave your flow</li>
+                </ul>
+                <div class="feature-terminal mini dark">
+                    <code>Because <span class="strike">cat README.md</span> is ugly.</code>
+                </div>
+            </div>
+
+            <!-- F6 Favorites -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <span class="fkey">F6</span>
+                </div>
+                <h3>Favorites - Project Navigator</h3>
+                <p>Your projects. One keypress away.</p>
+                <div class="feature-terminal mini">
+<pre>│ All Folders     │ ★ Favorites    │
+├─────────────────┼────────────────┤
+│ ☆ work/api      │ ★ main-app     │
+│ ★ work/main-app │ ★ dotfiles     │</pre>
+                </div>
+                <div class="shortcuts">
+                    <span class="shortcut"><kbd>Space</kbd> Copy path</span>
+                    <span class="shortcut"><kbd>/</kbd> Search</span>
+                </div>
+            </div>
+
+            <!-- F7 Prompt Writer -->
+            <div class="feature-card featured">
+                <div class="feature-icon">
+                    <span class="fkey">F7</span>
+                </div>
+                <h3>Prompt Writer - AI-Powered</h3>
+                <p>Where your prompts become powerful.</p>
+                <div class="feature-terminal mini">
+<pre>Create a REST API for_
+              ┌──────────────┐
+              │ 1 for        │
+              │ 2 format     │
+              │ 3 forward    │
+              └──────────────┘</pre>
+                </div>
+                <div class="ai-levels">
+                    <span class="level">Little</span>
+                    <span class="level">Medium</span>
+                    <span class="level">Deep</span>
+                    <span class="level highlight">Aggressive</span>
+                </div>
+                <p class="feature-note">Stream → Watch → Edit → Accept</p>
+            </div>
+
+            <!-- F9 Config -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <span class="fkey">F9</span>
+                </div>
+                <h3>Config Panel</h3>
+                <p>Make it yours.</p>
+                <div class="themes">
+                    <span class="theme catppuccin">Catppuccin</span>
+                    <span class="theme tokyo">Tokyo Night</span>
+                    <span class="theme gruvbox">Gruvbox</span>
+                    <span class="theme dracula">Dracula</span>
+                    <span class="theme nord">Nord</span>
+                </div>
+                <p class="feature-note">8 themes • Top/Bottom bar • Instant apply</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Enhancement Section -->
+    <section class="ai-section">
+        <h2 class="section-title">AI Enhancement</h2>
+        <div class="ai-demo">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">prompt-writer</span>
+                </div>
+                <div class="terminal-content">
+                    <div class="ai-flow">
+                        <div class="flow-step">
+                            <span class="step-label">You type:</span>
+                            <code class="user-input">"make api that does user auth stuff"</code>
+                        </div>
+                        <div class="flow-arrow">↓ <kbd>Ctrl+G</kbd> → Select "Aggressive"</div>
+                        <div class="flow-step streaming">
+                            <span class="step-label">Claude writes:</span>
+                            <div class="streaming-text">
+                                <code>"Design a RESTful API implementing OAuth 2.0
+authentication with JWT tokens, including:
+- /auth/login endpoint with rate limiting
+- /auth/refresh for token rotation
+- /auth/logout with token invalidation
+- Role-based access control (RBAC)..."</code>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">↓ Edit if needed → Press <kbd>Y</kbd></div>
+                        <div class="flow-step final">
+                            <span class="step-label success">Done!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keyboard Shortcuts -->
+    <section class="shortcuts-section">
+        <h2 class="section-title">Keyboard First</h2>
+        <p class="section-subtitle">Every action has a keybinding. Your hands never leave home row.</p>
+
+        <div class="shortcuts-grid">
+            <div class="shortcut-group">
+                <h4>Navigation</h4>
+                <div class="shortcut-item"><kbd>F1-F7, F9</kbd> <span>Jump to window</span></div>
+                <div class="shortcut-item"><kbd>Shift+←/→</kbd> <span>Previous/Next</span></div>
+                <div class="shortcut-item"><kbd>F10</kbd> <span>Exit session</span></div>
+                <div class="shortcut-item"><kbd>F12</kbd> <span>Toggle passthrough</span></div>
+            </div>
+            <div class="shortcut-group">
+                <h4>Prompt Writer</h4>
+                <div class="shortcut-item"><kbd>Ctrl+G</kbd> <span>AI Enhance</span></div>
+                <div class="shortcut-item"><kbd>Ctrl+S</kbd> <span>Save</span></div>
+                <div class="shortcut-item"><kbd>Ctrl+C</kbd> <span>Copy all</span></div>
+                <div class="shortcut-item"><kbd>Ctrl+T</kbd> <span>Templates</span></div>
+            </div>
+            <div class="shortcut-group">
+                <h4>Autocomplete</h4>
+                <div class="shortcut-item"><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <span>Quick select</span></div>
+                <div class="shortcut-item"><kbd>Tab</kbd> <span>Accept suggestion</span></div>
+                <div class="shortcut-item"><kbd>Esc</kbd> <span>Hide dropdown</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="architecture">
+        <h2 class="section-title">The Architecture</h2>
+        <div class="arch-diagram">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">architecture</span>
+                </div>
+                <div class="terminal-content">
+<pre class="arch-tree">
+tmux session "claude-ide-{pid}"
+│
+├── Window 1 (F1): Terminal 1 ──────── <span class="tech">zsh</span>
+├── Window 2 (F2): Terminal 2 ──────── <span class="tech">zsh</span>
+├── Window 3 (F3): Tree ────────────── <span class="tech">Python/Textual</span>
+├── Window 4 (F4): Lizard ──────────── <span class="tech">Python/Textual + Lizard</span>
+├── Window 5 (F5): Glow ────────────── <span class="tech">Go binary</span>
+├── Window 6 (F6): Favorites ───────── <span class="tech">Python/Textual</span>
+├── Window 7 (F7): Prompt Writer ───── <span class="tech">Python/Textual + Claude</span>
+└── Window 9 (F9): Config ──────────── <span class="tech">Python/Textual</span>
+</pre>
+                </div>
+            </div>
+        </div>
+        <div class="tech-stack">
+            <div class="tech-item">
+                <strong>tmux</strong>
+                <span>Battle-tested multiplexing</span>
+            </div>
+            <div class="tech-item">
+                <strong>Textual</strong>
+                <span>Modern Python TUI</span>
+            </div>
+            <div class="tech-item">
+                <strong>Claude API</strong>
+                <span>AI enhancement</span>
+            </div>
+            <div class="tech-item">
+                <strong>Lizard</strong>
+                <span>Code complexity</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Started -->
+    <section id="get-started" class="get-started">
+        <h2 class="section-title">Get Started</h2>
+        <div class="terminal-window install-terminal">
+            <div class="terminal-header">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+                <span class="terminal-title">installation</span>
+            </div>
+            <div class="terminal-content">
+<div class="install-command">
+    <code id="install-cmd">curl -fsSL https://raw.githubusercontent.com/padrian2s/my_env/main/remote-install.sh | bash</code>
+    <button class="copy-btn" onclick="copyInstall()" title="Copy to clipboard">
+        <span class="material-icons">content_copy</span>
+        <span class="copy-text">Copy</span>
+    </button>
+</div>
+<pre>
+<span class="comment"># Then launch</span>
+<span class="prompt">$</span> tui
+
+<span class="comment"># Optional: Set up AI for Prompt Writer</span>
+<span class="prompt">$</span> export ANTHROPIC_API_KEY="your-key"
+</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="philosophy">
+        <h2 class="section-title">The Philosophy</h2>
+        <div class="principles">
+            <div class="principle">
+                <span class="material-icons principle-icon">keyboard</span>
+                <h4>Keyboard First</h4>
+                <p>Every action has a keybinding</p>
+            </div>
+            <div class="principle">
+                <span class="material-icons principle-icon">center_focus_strong</span>
+                <h4>Focus, Not Features</h4>
+                <p>Each window does one thing well</p>
+            </div>
+            <div class="principle">
+                <span class="material-icons principle-icon">terminal</span>
+                <h4>Terminal Native</h4>
+                <p>Works over SSH, anywhere</p>
+            </div>
+            <div class="principle">
+                <span class="material-icons principle-icon">smart_toy</span>
+                <h4>AI Augmented</h4>
+                <p>AI helps, you decide</p>
+            </div>
+            <div class="principle">
+                <span class="material-icons principle-icon">analytics</span>
+                <h4>Data-Driven</h4>
+                <p>Measure code quality</p>
+            </div>
+            <div class="principle">
+                <span class="material-icons principle-icon">build</span>
+                <h4>Composable</h4>
+                <p>Modify and extend</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-tagline">Built with tmux + Textual + Claude + Lizard</p>
+            <p class="footer-powered">Powered by keystrokes ⚡</p>
+            <div class="footer-links">
+                <a href="https://github.com/Textualize/textual">Textual</a>
+                <a href="https://github.com/terryyin/lizard">Lizard</a>
+                <a href="https://github.com/charmbracelet/glow">Glow</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
