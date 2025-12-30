@@ -11,6 +11,19 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal">
+        <div class="video-modal-content">
+            <button class="video-close-btn" onclick="closeVideoModal()">
+                <span class="material-icons">close</span>
+            </button>
+            <video id="prompt-video" controls>
+                <source src="Claude_Prompt.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <header class="hero">
         <div class="terminal-window hero-terminal">
@@ -51,7 +64,7 @@
             <span class="status-item">F4:Lizard</span>
             <span class="status-item">F5:Glow</span>
             <span class="status-item">F6:Favs</span>
-            <span class="status-item">F7:Prompt</span>
+            <span class="status-item f7-trigger" onclick="openVideoModal()">F7:Prompt</span>
             <span class="status-item">F9:Config</span>
             <span class="status-item special">F10:Exit</span>
             <span class="status-item special">F12:Keys</span>
@@ -172,7 +185,7 @@
             </div>
 
             <!-- F7 Prompt Writer -->
-            <div class="feature-card featured">
+            <div class="feature-card featured f7-trigger" onclick="openVideoModal()">
                 <div class="feature-icon">
                     <kbd>F7</kbd>
                 </div>

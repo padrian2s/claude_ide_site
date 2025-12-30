@@ -895,3 +895,74 @@ section {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--fg-muted);
 }
+
+/* Video Modal */
+.video-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    z-index: 99999;
+}
+
+.video-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.video-modal video {
+    max-width: 85vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.video-close-btn {
+    position: absolute;
+    top: -60px;
+    right: -10px;
+    background: var(--bg-lighter);
+    border: none;
+    color: var(--fg-main);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-close-btn:hover {
+    background: var(--accent-red);
+    transform: scale(1.1);
+}
+
+.video-close-btn .material-icons {
+    font-size: 24px;
+}
+
+/* F7 Trigger - make it clickable */
+.f7-trigger {
+    cursor: pointer;
+}
+
+.status-item.f7-trigger:hover {
+    background: var(--accent-yellow);
+    color: var(--bg-dark);
+}
