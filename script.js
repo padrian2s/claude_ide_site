@@ -1,5 +1,44 @@
 // Claude IDE Website - Interactive Features
 
+// Video Modal Functions
+function openVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const video = document.getElementById('prompt-video');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    video.play();
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const video = document.getElementById('prompt-video');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    video.pause();
+    video.currentTime = 0;
+}
+
+// Close modal on background click or Escape key
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('video-modal');
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeVideoModal();
+            }
+        });
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('video-modal');
+        if (modal && modal.classList.contains('active')) {
+            closeVideoModal();
+        }
+    }
+});
+
 // Copy install command to clipboard
 function copyInstall() {
     const cmd = document.getElementById('install-cmd').textContent;
