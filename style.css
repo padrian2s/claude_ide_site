@@ -132,14 +132,6 @@ body {
     background-clip: text;
 }
 
-.balance-line {
-    font-family: var(--font-mono);
-    font-size: 1rem;
-    color: var(--accent-yellow);
-    margin-bottom: 12px;
-    letter-spacing: 0.5px;
-}
-
 .tagline {
     font-size: 1.1rem;
     color: var(--fg-dim);
