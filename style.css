@@ -774,24 +774,6 @@ section {
     word-break: break-all;
 }
 
-.install-command.secondary {
-    background: transparent;
-    border: 1px dashed var(--bg-lighter);
-    padding: 14px 18px;
-    margin-bottom: 16px;
-}
-
-.install-command.secondary code {
-    font-size: 13px;
-    color: var(--fg-dim);
-}
-
-.install-alt {
-    margin: 16px 0 8px;
-    font-family: var(--font-mono);
-    font-size: 14px;
-}
-
 .copy-btn {
     display: flex;
     align-items: center;
