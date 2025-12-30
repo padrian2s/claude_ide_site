@@ -40,9 +40,10 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Copy install command to clipboard
-function copyInstall() {
-    const cmd = document.getElementById('install-cmd').textContent;
-    const btn = document.querySelector('.copy-btn');
+function copyInstall(elementId) {
+    const codeEl = document.getElementById(elementId);
+    const cmd = codeEl.textContent;
+    const btn = codeEl.parentElement.querySelector('.copy-btn');
     const icon = btn.querySelector('.material-icons');
     const text = btn.querySelector('.copy-text');
 

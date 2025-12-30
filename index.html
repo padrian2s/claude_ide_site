@@ -366,9 +366,17 @@ tmux session "claude-ide-{pid}"
                 <span class="terminal-title">installation</span>
             </div>
             <div class="terminal-content">
-<div class="install-command">
-    <code id="install-cmd">curl -fsSL https://raw.githubusercontent.com/padrian2s/claude_ide/main/remote-install.sh | bash</code>
-    <button class="copy-btn" onclick="copyInstall()" title="Copy to clipboard">
+<div class="install-command primary">
+    <code id="install-cmd-short">curl -fsSL https://claude-ide.org/get | bash</code>
+    <button class="copy-btn" onclick="copyInstall('install-cmd-short')" title="Copy to clipboard">
+        <span class="material-icons">content_copy</span>
+        <span class="copy-text">Copy</span>
+    </button>
+</div>
+<p class="install-alt"><span class="comment"># or via GitHub:</span></p>
+<div class="install-command secondary">
+    <code id="install-cmd-github">curl -fsSL https://raw.githubusercontent.com/padrian2s/claude_ide/main/remote-install.sh | bash</code>
+    <button class="copy-btn" onclick="copyInstall('install-cmd-github')" title="Copy to clipboard">
         <span class="material-icons">content_copy</span>
         <span class="copy-text">Copy</span>
     </button>
