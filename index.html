@@ -46,6 +46,7 @@
 ║                                                                                ║
 ╚════════════════════════════════════════════════════════════════════════════════╝</pre>
                 <h1>Your Terminal, Reimagined</h1>
+                <p class="balance-line">IDEs do too much. Editors do too little. This is just right.</p>
                 <p class="tagline">A complete workspace that lives in your terminal.<br>No browser. No Electron. Just pure productivity.</p>
                 <div class="cta-buttons">
                     <a href="#get-started" class="btn btn-primary">Get Started</a>
@@ -55,11 +56,24 @@
         </div>
     </header>
 
+    <!-- Video Preview -->
+    <section class="video-preview">
+        <div class="video-preview-card" onclick="openVideoModal()">
+            <div class="video-icon">
+                <span class="material-icons">play_circle</span>
+            </div>
+            <div class="video-info">
+                <h3>See it in action</h3>
+                <p>Watch the Prompt Writer demo</p>
+            </div>
+            <span class="material-icons expand-icon">expand_more</span>
+        </div>
+    </section>
+
     <!-- Status Bar Preview -->
     <section class="status-preview">
         <div class="status-bar">
-            <span class="status-item active">F1:Term1</span>
-            <span class="status-item">F2:Term2</span>
+            <span class="status-item active">F1:Term</span>
             <span class="status-item">F3:Tree</span>
             <span class="status-item">F4:Lizard</span>
             <span class="status-item">F5:Glow</span>
@@ -77,17 +91,17 @@
         <h2 class="section-title">The Ecosystem</h2>
 
         <div class="features-grid">
-            <!-- F1/F2 Terminals -->
+            <!-- F1 Terminal -->
             <div class="feature-card">
                 <div class="feature-icon">
-                    <kbd>F1</kbd><kbd>F2</kbd>
+                    <kbd>F1</kbd>
                 </div>
-                <h3>Twin Terminals</h3>
-                <p>Two shells. Always ready.</p>
+                <h3>Dynamic Terminals</h3>
+                <p>One default. Add as many as you need.</p>
                 <ul>
-                    <li>Run Claude Code in F1</li>
-                    <li>Run backend/frontend in F2</li>
-                    <li>Switch instantly with a keypress</li>
+                    <li>F1 opens your default terminal</li>
+                    <li><kbd>Ctrl+T</kbd> adds new terminals</li>
+                    <li><kbd>Shift+←/→</kbd> navigates between them</li>
                 </ul>
                 <div class="feature-terminal">
                     <code>$ claude-code --interactive</code>
@@ -274,8 +288,9 @@ authentication with JWT tokens, including:
         <div class="shortcuts-grid">
             <div class="shortcut-group">
                 <h4>Navigation</h4>
-                <div class="shortcut-item"><kbd>F1-F7, F9</kbd> <span>Jump to window</span></div>
-                <div class="shortcut-item"><kbd>Shift+←/→</kbd> <span>Previous/Next</span></div>
+                <div class="shortcut-item"><kbd>F1, F3-F7, F9</kbd> <span>Jump to window</span></div>
+                <div class="shortcut-item"><kbd>Shift+←/→</kbd> <span>Navigate terminals</span></div>
+                <div class="shortcut-item"><kbd>Ctrl+T</kbd> <span>Add new terminal</span></div>
                 <div class="shortcut-item"><kbd>F10</kbd> <span>Exit session</span></div>
                 <div class="shortcut-item"><kbd>F12</kbd> <span>Toggle passthrough</span></div>
             </div>
@@ -310,8 +325,7 @@ authentication with JWT tokens, including:
 <pre class="arch-tree">
 tmux session "claude-ide-{pid}"
 │
-├── Window 1 (F1): Terminal 1 ──────── <span class="tech">zsh</span>
-├── Window 2 (F2): Terminal 2 ──────── <span class="tech">zsh</span>
+├── Window 1 (F1): Terminal ─────────── <span class="tech">zsh</span> <span class="dim">(Ctrl+T adds more)</span>
 ├── Window 3 (F3): Tree ────────────── <span class="tech">Python/Textual</span>
 ├── Window 4 (F4): Lizard ──────────── <span class="tech">Python/Textual + Lizard</span>
 ├── Window 5 (F5): Glow ────────────── <span class="tech">Go binary</span>
