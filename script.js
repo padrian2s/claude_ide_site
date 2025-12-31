@@ -80,6 +80,27 @@ function copyInstall(elementId) {
     });
 }
 
+// Install/Uninstall toggle
+function initInstallToggle() {
+    const toggleOptions = document.querySelectorAll('.toggle-option');
+    const cmdEl = document.getElementById('install-cmd');
+    if (!toggleOptions.length || !cmdEl) return;
+
+    const commands = {
+        install: 'curl -fsSL https://claude-ide.org/get | bash',
+        uninstall: 'curl -fsSL https://claude-ide.org/uninstall | bash'
+    };
+
+    toggleOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const mode = option.dataset.mode;
+            toggleOptions.forEach(o => o.classList.remove('active'));
+            option.classList.add('active');
+            cmdEl.textContent = commands[mode];
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // Smooth scrolling for anchor links
     initSmoothScroll();
@@ -98,6 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Keyboard shortcut visual feedback
     initKeyboardFeedback();
+
+    // Install/Uninstall toggle
+    initInstallToggle();
 });
 
 // Smooth scroll for anchor links

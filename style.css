@@ -821,6 +821,33 @@ section {
     color: var(--accent-cyan);
 }
 
+/* Install/Uninstall Toggle */
+.install-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+}
+
+.toggle-option {
+    color: var(--fg-muted);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.toggle-option:hover {
+    color: var(--fg-dim);
+}
+
+.toggle-option.active {
+    color: var(--accent-cyan);
+}
+
+.toggle-sep {
+    color: var(--bg-lighter);
+}
+
 /* Philosophy */
 .philosophy {
     background: linear-gradient(135deg, var(--bg-medium), var(--bg-dark));

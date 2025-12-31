@@ -366,6 +366,11 @@ tmux session "claude-ide-{pid}"
                 <span class="terminal-title">installation</span>
             </div>
             <div class="terminal-content">
+<div class="install-toggle">
+    <span class="toggle-option active" data-mode="install">Install</span>
+    <span class="toggle-sep">|</span>
+    <span class="toggle-option" data-mode="uninstall">Uninstall</span>
+</div>
 <div class="install-command">
     <code id="install-cmd">curl -fsSL https://claude-ide.org/get | bash</code>
     <button class="copy-btn" onclick="copyInstall('install-cmd')" title="Copy to clipboard">
