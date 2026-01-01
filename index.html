@@ -47,6 +47,7 @@
 ╚════════════════════════════════════════════════════════════════════════════════╝</pre>
                 <h1>Your Terminal, Reimagined</h1>
                 <p class="tagline">The Claude Code IDE we all wanted. Right in your console.<br>No browser. No Electron. Just pure productivity.</p>
+                <p class="tagline-sub">Built on AI prompts you can modify. Shape the IDE to work exactly how you think.</p>
                 <div class="cta-buttons">
                     <a href="#get-started" class="btn btn-primary">Get Started</a>
                     <a href="#features" class="btn btn-secondary">Explore Features</a>
@@ -222,12 +223,19 @@
             </div>
 
             <!-- F9 Config -->
-            <div class="feature-card">
+            <div class="feature-card featured">
                 <div class="feature-icon">
                     <kbd>F9</kbd>
                 </div>
                 <h3>Config Panel</h3>
-                <p>Make it yours.</p>
+                <p>Make it yours. The entire IDE runs on AI prompts—modify them to change how it works.</p>
+                <div class="feature-terminal mini">
+<pre><span class="dim"># Every behavior is a prompt you control</span>
+~/.claude-ide/prompts/
+├── tree_view.md      <span class="dim"># File browser logic</span>
+├── prompt_writer.md  <span class="dim"># AI enhancement</span>
+└── your_custom.md    <span class="dim"># Your additions</span></pre>
+                </div>
                 <div class="themes">
                     <span class="theme catppuccin">Catppuccin</span>
                     <span class="theme tokyo">Tokyo Night</span>
@@ -235,7 +243,7 @@
                     <span class="theme dracula">Dracula</span>
                     <span class="theme nord">Nord</span>
                 </div>
-                <p class="feature-note">8 themes • Top/Bottom bar • Instant apply</p>
+                <p class="feature-note">8 themes • AI prompts you can edit • Extend the IDE yourself</p>
             </div>
         </div>
     </section>

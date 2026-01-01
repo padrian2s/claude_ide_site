@@ -135,7 +135,14 @@ body {
 .tagline {
     font-size: 1.1rem;
     color: var(--fg-dim);
+    margin-bottom: 12px;
+}
+
+.tagline-sub {
+    font-size: 0.95rem;
+    color: var(--accent);
     margin-bottom: 32px;
+    font-style: italic;
 }
 
 .cta-buttons {
