@@ -73,11 +73,13 @@
     <section class="status-preview">
         <div class="status-bar">
             <span class="status-item active">F1:Term</span>
-            <span class="status-item">F3:Tree</span>
-            <span class="status-item">F4:Lizard</span>
-            <span class="status-item">F5:Glow</span>
-            <span class="status-item">F6:Favs</span>
-            <span class="status-item f7-trigger" onclick="openVideoModal()">F7:Prompt</span>
+            <span class="status-item">F2:Tree</span>
+            <span class="status-item">F3:Lizard</span>
+            <span class="status-item">F4:Glow</span>
+            <span class="status-item">F5:Favs</span>
+            <span class="status-item f7-trigger" onclick="openVideoModal()">F6:Prompt</span>
+            <span class="status-item">F7:Git</span>
+            <span class="status-item">F8:Status</span>
             <span class="status-item">F9:Config</span>
             <span class="status-item special">F10:Exit</span>
             <span class="status-item special">F12:Keys</span>
@@ -107,10 +109,10 @@
                 </div>
             </div>
 
-            <!-- F3 Tree View -->
+            <!-- F2 Tree View -->
             <div class="feature-card featured">
                 <div class="feature-icon">
-                    <kbd>F3</kbd>
+                    <kbd>F2</kbd>
                 </div>
                 <h3>Tree View + Navigator</h3>
                 <p>File browser, code viewer, and dual-panel commander.</p>
@@ -142,10 +144,10 @@
                 </div>
             </div>
 
-            <!-- F4 Lizard -->
+            <!-- F3 Lizard -->
             <div class="feature-card featured">
                 <div class="feature-icon">
-                    <kbd>F4</kbd>
+                    <kbd>F3</kbd>
                 </div>
                 <h3>Lizard - Code Complexity</h3>
                 <p>Know your code's health at a glance.</p>
@@ -161,10 +163,10 @@
                 </div>
             </div>
 
-            <!-- F5 Glow -->
+            <!-- F4 Glow -->
             <div class="feature-card">
                 <div class="feature-icon">
-                    <kbd>F5</kbd>
+                    <kbd>F4</kbd>
                 </div>
                 <h3>Glow - Markdown Viewer</h3>
                 <p>Beautiful docs in your terminal.</p>
@@ -178,10 +180,10 @@
                 </div>
             </div>
 
-            <!-- F6 Favorites -->
+            <!-- F5 Favorites -->
             <div class="feature-card">
                 <div class="feature-icon">
-                    <kbd>F6</kbd>
+                    <kbd>F5</kbd>
                 </div>
                 <h3>Favorites - Project Navigator</h3>
                 <p>Your projects. One keypress away.</p>
@@ -197,10 +199,10 @@
                 </div>
             </div>
 
-            <!-- F7 Prompt Writer -->
+            <!-- F6 Prompt Writer -->
             <div class="feature-card featured f7-trigger" onclick="openVideoModal()">
                 <div class="feature-icon">
-                    <kbd>F7</kbd>
+                    <kbd>F6</kbd>
                 </div>
                 <h3>Prompt Writer - AI-Powered</h3>
                 <p>Where your prompts become powerful.</p>
@@ -219,6 +221,47 @@
                     <span class="level highlight">Aggressive</span>
                 </div>
                 <p class="feature-note">Stream → Watch → Edit → Accept</p>
+            </div>
+
+            <!-- F7 Git (Lazygit) -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <kbd>F7</kbd>
+                </div>
+                <h3>Git - Lazygit</h3>
+                <p>Git made visual and fast.</p>
+                <div class="feature-terminal mini">
+<pre>┌ Branches ──────┬─ Commits ─────────────┐
+│ ▸ main         │ abc123 Add feature    │
+│   feature-x    │ def456 Fix bug        │
+│   hotfix       │ ghi789 Update docs    │
+└────────────────┴───────────────────────┘</pre>
+                </div>
+                <ul>
+                    <li>Stage, commit, push in seconds</li>
+                    <li>Branch management made easy</li>
+                    <li>Interactive rebase support</li>
+                </ul>
+            </div>
+
+            <!-- F8 Status -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <kbd>F8</kbd>
+                </div>
+                <h3>Status - Session Metrics</h3>
+                <p>Track your Claude Code session.</p>
+                <div class="feature-terminal mini">
+<pre>┌─ Session Metrics ──────────────────────┐
+│ Tokens: 125,432 in │ 45,678 out        │
+│ Cost: $2.34        │ Duration: 1h 23m  │
+│ Model: opus-4      │ Messages: 42      │
+└────────────────────────────────────────┘</pre>
+                </div>
+                <div class="shortcuts">
+                    <span class="shortcut"><kbd>r</kbd> Refresh</span>
+                    <span class="shortcut"><kbd>q</kbd> Quit</span>
+                </div>
             </div>
 
             <!-- F9 Config -->
@@ -294,7 +337,7 @@ authentication with JWT tokens, including:
         <div class="shortcuts-grid">
             <div class="shortcut-group">
                 <h4>Navigation</h4>
-                <div class="shortcut-item"><kbd>F1, F3-F7, F9</kbd> <span>Jump to window</span></div>
+                <div class="shortcut-item"><kbd>F1-F9</kbd> <span>Jump to window</span></div>
                 <div class="shortcut-item"><kbd>Shift+←/→</kbd> <span>Navigate terminals</span></div>
                 <div class="shortcut-item"><kbd>Ctrl+T</kbd> <span>Add new terminal</span></div>
                 <div class="shortcut-item"><kbd>F10</kbd> <span>Exit session</span></div>
@@ -332,11 +375,13 @@ authentication with JWT tokens, including:
 tmux session "claude-ide-{pid}"
 │
 ├── Window 1 (F1): Terminal ─────────── <span class="tech">zsh</span> <span class="dim">(Ctrl+T adds more)</span>
-├── Window 3 (F3): Tree ────────────── <span class="tech">Python/Textual</span>
-├── Window 4 (F4): Lizard ──────────── <span class="tech">Python/Textual + Lizard</span>
-├── Window 5 (F5): Glow ────────────── <span class="tech">Go binary</span>
-├── Window 6 (F6): Favorites ───────── <span class="tech">Python/Textual</span>
-├── Window 7 (F7): Prompt Writer ───── <span class="tech">Python/Textual + Claude</span>
+├── Window 2 (F2): Tree ────────────── <span class="tech">Python/Textual</span>
+├── Window 3 (F3): Lizard ──────────── <span class="tech">Python/Textual + Lizard</span>
+├── Window 4 (F4): Glow ────────────── <span class="tech">Go binary</span>
+├── Window 5 (F5): Favorites ───────── <span class="tech">Python/Textual</span>
+├── Window 6 (F6): Prompt Writer ───── <span class="tech">Python/Textual + Claude</span>
+├── Window 7 (F7): Git ────────────── <span class="tech">Lazygit</span>
+├── Window 8 (F8): Status ─────────── <span class="tech">Python/Textual</span>
 └── Window 9 (F9): Config ──────────── <span class="tech">Python/Textual</span>
 </pre>
                 </div>
@@ -358,6 +403,10 @@ tmux session "claude-ide-{pid}"
             <div class="tech-item">
                 <strong>Lizard</strong>
                 <span>Code complexity</span>
+            </div>
+            <div class="tech-item">
+                <strong>Lazygit</strong>
+                <span>Git made visual</span>
             </div>
         </div>
     </section>
@@ -436,10 +485,11 @@ tmux session "claude-ide-{pid}"
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <p class="footer-tagline">Built with tmux + Textual + Claude + Lizard</p>
+            <p class="footer-tagline">Built with tmux + Textual + Claude + Lizard + Lazygit</p>
             <p class="footer-powered">Powered by keystrokes ⚡</p>
             <div class="footer-links">
                 <a href="https://github.com/Textualize/textual">Textual</a>
+                <a href="https://github.com/jesseduffield/lazygit">Lazygit</a>
                 <a href="https://github.com/terryyin/lizard">Lizard</a>
                 <a href="https://github.com/charmbracelet/glow">Glow</a>
             </div>
