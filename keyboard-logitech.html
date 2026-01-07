@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logitech MX Keys S</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      background: linear-gradient(135deg, #1d2021 0%, #1a1a2e 100%);
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      background: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      overflow: visible;
+    }
+
+    .keyboard {
+      background: linear-gradient(180deg, #404040 0%, #353535 2%, #2e2e2e 8%, #282828 100%);
+      padding: 14px 16px 18px 16px;
+      border-radius: 10px;
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.5),
+        0 4px 8px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        inset 0 -1px 0 rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .keyboard::before {
+      content: '';
+      position: absolute;
+      top: 1px;
+      left: 20px;
+      right: 20px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      border-radius: 1px;
+    }
+
+    .keyboard-layout {
+      display: flex;
+      gap: 10px;
+    }
+
+    .main-section {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .nav-section {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .numpad-section {
+      display: grid;
+      grid-template-columns: repeat(4, 34px);
+      grid-template-rows: repeat(5, 34px);
+      gap: 3px;
+      margin-top: 28px; /* Align with number row */
+    }
+
+    .row {
+      display: flex;
+      gap: 3px;
+      align-items: stretch;
+    }
+
+    .fn-row {
+      display: flex;
+      gap: 3px;
+      align-items: stretch;
+      margin-bottom: 6px;
+    }
+
+    /* Base key styling */
+    .key {
+      background: linear-gradient(180deg, #3d3d3d 0%, #353535 40%, #303030 100%);
+      border: none;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      letter-spacing: 0.3px;
+      box-shadow:
+        0 1px 1px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        inset 0 -1px 0 rgba(0,0,0,0.15);
+    }
+
+    .key::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      right: 3px;
+      bottom: 3px;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(60,60,60,0.5) 0%, transparent 100%);
+      border-radius: 3px;
+      pointer-events: none;
+    }
+
+    .key:hover {
+      background: linear-gradient(180deg, #454545 0%, #3d3d3d 40%, #383838 100%);
+    }
+
+    .key:active {
+      background: linear-gradient(180deg, #333333 0%, #2d2d2d 100%);
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    /* Standard key - 1u */
+    .k1 { width: 34px; height: 34px; }
+
+    /* Function row key */
+    .kfn { width: 38px; height: 28px; font-size: 7px; line-height: 1.1; }
+
+    .fn-label {
+      font-size: 6px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+    }
+
+    .highlight-red {
+      background: linear-gradient(180deg, #5a3535 0%, #4a2d2d 40%, #402828 100%) !important;
+      color: #ff8888;
+    }
+
+    .highlight-red .fn-label {
+      color: #ff6666;
+    }
+
+    .fkey {
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .fkey:hover {
+      background: linear-gradient(180deg, #4a4a4a 0%, #424242 40%, #3d3d3d 100%) !important;
+      transform: translateY(-1px);
+    }
+
+    .fkey.active {
+      background: linear-gradient(180deg, #2d5a4a 0%, #264d3f 40%, #1f4235 100%) !important;
+      box-shadow: 0 0 8px rgba(142, 192, 124, 0.4);
+    }
+
+    .fkey.active .fn-label {
+      color: #8ec07c;
+    }
+
+    .highlight-red.active {
+      background: linear-gradient(180deg, #6a4545 0%, #5a3535 40%, #4a2828 100%) !important;
+      box-shadow: 0 0 8px rgba(255, 100, 100, 0.4);
+    }
+
+    /* Scenario Panel */
+    .scenario-panel {
+      margin-bottom: 20px;
+      background: transparent;
+      padding: 16px;
+      display: none;
+      text-align: left;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 12px;
+      color: rgba(255,255,255,0.9);
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .scenario-panel.visible {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .scenario-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .scenario-key {
+      background: #3d3d3d;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      color: #8ec07c;
+    }
+
+    .scenario-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .scenario-content {
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+
+    .scenario-content pre {
+      background: rgba(0,0,0,0.3);
+      padding: 10px;
+      border-radius: 4px;
+      margin: 8px 0;
+      overflow: visible;
+      white-space: pre-wrap;
+    }
+
+    .scenario-content .dim { color: rgba(255,255,255,0.4); }
+    .scenario-content .green { color: #8ec07c; }
+    .scenario-content .yellow { color: #fabd2f; }
+    .scenario-content .red { color: #fb4934; }
+    .scenario-content .cyan { color: #8ec07c; }
+
+    /* 1.25u */
+    .k125 { width: 43px; height: 34px; }
+
+    /* 1.5u */
+    .k15 { width: 52px; height: 34px; }
+
+    /* 1.75u */
+    .k175 { width: 62px; height: 34px; }
+
+    /* 2u */
+    .k2 { width: 71px; height: 34px; }
+
+    /* 2.25u */
+    .k225 { width: 80px; height: 34px; }
+
+    /* 2.75u */
+    .k275 { width: 99px; height: 34px; }
+
+    /* Spacebar */
+    .kspace { width: 228px; height: 34px; }
+
+    /* Key content positioning */
+    .key-tl {
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 4px 5px;
+    }
+
+    .key-tr {
+      justify-content: flex-start;
+      align-items: flex-end;
+      padding: 4px 5px;
+    }
+
+    .key-bl {
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding: 4px 5px;
+    }
+
+    .key-br {
+      justify-content: flex-end;
+      align-items: flex-end;
+      padding: 4px 5px;
+    }
+
+    /* Dual label keys */
+    .dual {
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+    }
+
+    .dual .t {
+      font-size: 9px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .dual .b {
+      font-size: 12px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* Small text */
+    .sm { font-size: 8px; }
+    .xs { font-size: 7px; color: rgba(255,255,255,0.7); }
+
+    /* Function row icons */
+    .ico {
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1;
+    }
+
+    /* Section spacer */
+    .gap { width: 6px; }
+
+    /* Easy-switch device buttons */
+    .kswitch {
+      width: 26px;
+      height: 22px;
+      font-size: 9px;
+      color: rgba(255,255,255,0.4);
+      background: linear-gradient(180deg, #363636 0%, #2e2e2e 100%);
+    }
+
+    .kswitch.active {
+      color: rgba(255,255,255,0.9);
+      background: linear-gradient(180deg, #404040 0%, #383838 100%);
+    }
+
+    /* Caps lock indicator */
+    .caps-dot {
+      width: 3px;
+      height: 3px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      position: absolute;
+      left: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Letter styling */
+    .letter {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* Nav cluster */
+    .nav-top {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .nav-row {
+      display: flex;
+      gap: 3px;
+    }
+
+    /* Arrow cluster */
+    .arrow-cluster {
+      display: grid;
+      grid-template-columns: repeat(3, 34px);
+      grid-template-rows: repeat(2, 34px);
+      gap: 3px;
+    }
+
+    .arrow-up { grid-column: 2; grid-row: 1; }
+    .arrow-left { grid-column: 1; grid-row: 2; }
+    .arrow-down { grid-column: 2; grid-row: 2; }
+    .arrow-right { grid-column: 3; grid-row: 2; }
+
+    /* Numpad grid positions */
+    .num-plus {
+      grid-column: 4;
+      grid-row: 1 / 3;
+      height: 71px;
+    }
+
+    .num-enter {
+      grid-column: 4;
+      grid-row: 4 / 6;
+      height: 71px;
+    }
+
+    .num-0 {
+      grid-column: 1 / 3;
+      width: 71px;
+    }
+  </style>
+</head>
+<body>
+    <!-- Scenario Panel -->
+    <div id="scenario-panel" class="scenario-panel">
+      <div class="scenario-header">
+        <span class="scenario-key" id="scenario-key">F1</span>
+        <span class="scenario-title" id="scenario-title">Terminal</span>
+      </div>
+      <div class="scenario-content" id="scenario-content"></div>
+    </div>
+
+  <div class="keyboard">
+    <!-- Function Row - spans full width -->
+    <div class="fn-row">
+      <div class="key kfn key-tl xs">esc</div>
+      <div class="gap"></div>
+      <div class="key kfn xs fkey" data-key="f1" onclick="showScenario('f1')">F1<br><span class="fn-label">Term</span></div>
+      <div class="key kfn xs fkey" data-key="f2" onclick="showScenario('f2')">F2<br><span class="fn-label">Tree</span></div>
+      <div class="key kfn xs fkey" data-key="f3" onclick="showScenario('f3')">F3<br><span class="fn-label">Lizard</span></div>
+      <div class="key kfn xs fkey" data-key="f4" onclick="showScenario('f4')">F4<br><span class="fn-label">Glow</span></div>
+      <div class="gap"></div>
+      <div class="key kfn xs fkey" data-key="f5" onclick="showScenario('f5')">F5<br><span class="fn-label">Favs</span></div>
+      <div class="key kfn xs fkey" data-key="f6" onclick="showScenario('f6')">F6<br><span class="fn-label">Prompt</span></div>
+      <div class="key kfn xs fkey" data-key="f7" onclick="showScenario('f7')">F7<br><span class="fn-label">Git</span></div>
+      <div class="key kfn xs fkey" data-key="f8" onclick="showScenario('f8')">F8<br><span class="fn-label">Status</span></div>
+      <div class="gap"></div>
+      <div class="key kfn xs fkey" data-key="f9" onclick="showScenario('f9')">F9<br><span class="fn-label">Config</span></div>
+      <div class="key kfn xs fkey highlight-red" data-key="f10" onclick="showScenario('f10')">F10<br><span class="fn-label">Exit</span></div>
+      <div class="key kfn xs">F11</div>
+      <div class="key kfn xs fkey" data-key="f12" onclick="showScenario('f12')">F12<br><span class="fn-label">Keys</span></div>
+      <div style="margin-left: auto;"></div>
+      <div class="key kfn xs" style="width: 34px;">prt</div>
+      <div class="key kfn xs" style="width: 34px;">slk</div>
+      <div class="key kfn xs" style="width: 34px;">pse</div>
+    </div>
+
+    <div class="keyboard-layout">
+      <!-- Main keyboard section -->
+      <div class="main-section">
+        <!-- Number Row -->
+        <div class="row">
+          <div class="key k1 dual"><span class="t">~</span><span class="b">`</span></div>
+          <div class="key k1 dual"><span class="t">!</span><span class="b">1</span></div>
+          <div class="key k1 dual"><span class="t">@</span><span class="b">2</span></div>
+          <div class="key k1 dual"><span class="t">#</span><span class="b">3</span></div>
+          <div class="key k1 dual"><span class="t">$</span><span class="b">4</span></div>
+          <div class="key k1 dual"><span class="t">%</span><span class="b">5</span></div>
+          <div class="key k1 dual"><span class="t">^</span><span class="b">6</span></div>
+          <div class="key k1 dual"><span class="t">&</span><span class="b">7</span></div>
+          <div class="key k1 dual"><span class="t">*</span><span class="b">8</span></div>
+          <div class="key k1 dual"><span class="t">(</span><span class="b">9</span></div>
+          <div class="key k1 dual"><span class="t">)</span><span class="b">0</span></div>
+          <div class="key k1 dual"><span class="t">_</span><span class="b">−</span></div>
+          <div class="key k1 dual"><span class="t">+</span><span class="b">=</span></div>
+          <div class="key k2 key-br sm">backspace</div>
+        </div>
+
+        <!-- QWERTY Row -->
+        <div class="row">
+          <div class="key k15 key-tl sm">tab</div>
+          <div class="key k1 letter">Q</div>
+          <div class="key k1 letter">W</div>
+          <div class="key k1 letter">E</div>
+          <div class="key k1 letter">R</div>
+          <div class="key k1 letter">T</div>
+          <div class="key k1 letter">Y</div>
+          <div class="key k1 letter">U</div>
+          <div class="key k1 letter">I</div>
+          <div class="key k1 letter">O</div>
+          <div class="key k1 letter">P</div>
+          <div class="key k1 dual"><span class="t">{</span><span class="b">[</span></div>
+          <div class="key k1 dual"><span class="t">}</span><span class="b">]</span></div>
+          <div class="key k15 dual"><span class="t">|</span><span class="b">\</span></div>
+        </div>
+
+        <!-- Home Row -->
+        <div class="row">
+          <div class="key k175 key-tl sm" style="position:relative;"><span class="caps-dot"></span>caps</div>
+          <div class="key k1 letter">A</div>
+          <div class="key k1 letter">S</div>
+          <div class="key k1 letter">D</div>
+          <div class="key k1 letter">F</div>
+          <div class="key k1 letter">G</div>
+          <div class="key k1 letter">H</div>
+          <div class="key k1 letter">J</div>
+          <div class="key k1 letter">K</div>
+          <div class="key k1 letter">L</div>
+          <div class="key k1 dual"><span class="t">:</span><span class="b">;</span></div>
+          <div class="key k1 dual"><span class="t">"</span><span class="b">'</span></div>
+          <div class="key k225 key-br sm">enter</div>
+        </div>
+
+        <!-- Shift Row -->
+        <div class="row">
+          <div class="key k225 key-tl sm">shift</div>
+          <div class="key k1 letter">Z</div>
+          <div class="key k1 letter">X</div>
+          <div class="key k1 letter">C</div>
+          <div class="key k1 letter">V</div>
+          <div class="key k1 letter">B</div>
+          <div class="key k1 letter">N</div>
+          <div class="key k1 letter">M</div>
+          <div class="key k1 dual"><span class="t"><</span><span class="b">,</span></div>
+          <div class="key k1 dual"><span class="t">></span><span class="b">.</span></div>
+          <div class="key k1 dual"><span class="t">?</span><span class="b">/</span></div>
+          <div class="key k275 key-br sm">shift</div>
+        </div>
+
+        <!-- Bottom Row -->
+        <div class="row">
+          <div class="key k125 key-tl xs">ctrl</div>
+          <div class="key k125 key-tl xs">fn</div>
+          <div class="key k125 key-tl xs">⌥ opt</div>
+          <div class="key k125 key-tl xs">⌘ cmd</div>
+          <div class="key kspace"></div>
+          <div class="key k125 key-tr xs">⌘ cmd</div>
+          <div class="key k125 key-tr xs">⌥ opt</div>
+          <div class="key k125 key-tr xs">ctrl</div>
+        </div>
+      </div>
+
+      <!-- Navigation cluster -->
+      <div class="nav-section">
+        <div class="nav-top">
+          <div class="nav-row">
+            <div class="key k1 xs">ins</div>
+            <div class="key k1 xs">home</div>
+            <div class="key k1 xs">pgup</div>
+          </div>
+          <div class="nav-row">
+            <div class="key k1 xs">del</div>
+            <div class="key k1 xs">end</div>
+            <div class="key k1 xs">pgdn</div>
+          </div>
+        </div>
+        <!-- Spacer row -->
+        <div style="height: 37px;"></div>
+        <!-- Arrow cluster -->
+        <div class="arrow-cluster">
+          <div class="key k1 arrow-up">↑</div>
+          <div class="key k1 arrow-left">←</div>
+          <div class="key k1 arrow-down">↓</div>
+          <div class="key k1 arrow-right">→</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const scenarios = {
+      f1: {
+        key: 'F1',
+        title: 'Terminal — Claude Code + Enhancements',
+        content: `<pre><span class="dim">Claude Code is running. Enhanced with:</span>
+
+<span class="yellow">Ctrl+P</span>  Quick Input popup
+        ├─ Autocomplete as you type
+        ├─ <span class="cyan">Ctrl+G</span> AI-improve your prompt
+        └─ Sends directly to Claude
+
+<span class="yellow">Ctrl+T</span>  Create new terminal (T2, T3...)
+<span class="yellow">Ctrl+X</span>  Close current terminal
+
+<span class="yellow">Shift+F1-F9</span>  Switch between terminals
+        ├─ Shift+F1 → Main Claude (F1)
+        ├─ Shift+F2 → Terminal 2
+        └─ Shift+F3 → Terminal 3...</pre>
+<p>Claude Code with <span class="green">autocomplete</span>, <span class="green">prompt enhancement</span>, and <span class="green">multi-terminal</span> support</p>`
+      },
+      f2: {
+        key: 'F2',
+        title: 'Tree — File Browser + Manager',
+        content: `<pre>┌─ src/ ─────────────┬─ preview ─────────────┐
+│ <span class="green">▸</span> auth/            │ def verify_token():   │
+│   middleware.py    │     payload = jwt...  │
+│ <span class="yellow">▸</span> api/             │                       │
+└────────────────────┴───────────────────────┘
+
+<span class="yellow">m</span>  File Manager — dual-panel commander
+┌─────────────────┬─────────────────┐
+│ ~/project/src   │ ~/project/dist  │
+│ <span class="green">●</span> main.py       │   bundle.js     │
+│   config.py     │   index.html    │
+└─────────────────┴─────────────────┘
+    <span class="dim">Copy, move, rename, delete across panels</span></pre>
+<p><span class="cyan">Ctrl+F</span> fuzzy find · <span class="cyan">/</span> grep · <span class="cyan">Space</span> copy path to Claude</p>`
+      },
+      f3: {
+        key: 'F3',
+        title: 'Lizard — Before Asking Claude to Refactor',
+        content: `<pre>│ File          │ Function         │ CC  │
+├───────────────┼──────────────────┼─────┤
+│ auth.py       │ validate_all     │ <span class="red">15</span>  │ <span class="red">← Ask Claude!</span>
+│ user.py       │ process_request  │ <span class="red">12</span>  │ <span class="red">← Complex</span>
+│ api.py        │ handle_upload    │ <span class="yellow">8</span>   │</pre>
+<p><span class="dim">→ Press F1, tell Claude:</span> "Refactor validate_all, CC is 15"</p>`
+      },
+      f4: {
+        key: 'F4',
+        title: 'Glow — Read Docs Before Prompting',
+        content: `<pre><span class="green">╭─ API_DESIGN.md ─────────────────────────────╮</span>
+<span class="green">│</span>                                             <span class="green">│</span>
+<span class="green">│</span> <span class="yellow"># Authentication Flow</span>                       <span class="green">│</span>
+<span class="green">│</span>                                             <span class="green">│</span>
+<span class="green">│</span> 1. Client sends credentials to /auth/login  <span class="green">│</span>
+<span class="green">│</span> 2. Server returns JWT + refresh token       <span class="green">│</span>
+<span class="green">│</span> 3. Client includes JWT in Authorization     <span class="green">│</span>
+<span class="green">│</span>                                             <span class="green">│</span>
+<span class="green">╰─────────────────────────────────────────────╯</span></pre>
+<p><span class="dim">Read the spec → F1 → Tell Claude exactly what you need</span></p>`
+      },
+      f5: {
+        key: 'F5',
+        title: 'Favs — Quick Switch Projects',
+        content: `<pre>│ Recent            │ ★ Favorites        │
+├───────────────────┼────────────────────┤
+│ <span class="yellow">★</span> ~/work/api      │ <span class="yellow">★</span> api <span class="dim">(current)</span>    │
+│   ~/work/frontend │ <span class="yellow">★</span> frontend          │
+│   ~/personal/blog │ <span class="yellow">★</span> dotfiles          │
+│                   │                    │
+│ <span class="dim">Space: copy path</span>  │ <span class="dim">Enter: cd + F1</span>     │</pre>
+<p><span class="cyan">Enter</span> on frontend → Opens in F1 → Ask Claude about that project</p>`
+      },
+      f6: {
+        key: 'F6',
+        title: 'Prompt — From Simple to Powerful',
+        content: `<pre><span class="dim">Start simple:</span>  "fix the auth bug"
+                     ↓ <span class="yellow">Ctrl+G</span> enhance
+<span class="dim">Level up:</span>
+  <span class="green">Little</span>   → Fix typos, grammar
+  <span class="yellow">Medium</span>   → Add clarity, structure
+  <span class="cyan">Deep</span>     → Technical detail, context
+  <span class="red">Aggressive</span> → Full rewrite, best practices
+
+<span class="green">Result:</span>
+"Debug the JWT token validation in auth.py.
+The refresh token rotation fails silently
+when tokens expire. Add proper error handling
+and logging for the OAuth flow..."
+
+<span class="yellow">Ctrl+R</span>  → Send directly to Claude in F1</pre>
+<p>Write quick thoughts → AI transforms → Send to Claude. <span class="green">Iterate fast.</span></p>`
+      },
+      f7: {
+        key: 'F7',
+        title: 'Git — Commit Claude\'s Changes',
+        content: `<pre>┌─ Staged ───────────┬─ Diff ─────────────────┐
+│ <span class="green">M</span> src/auth/mid..   │ <span class="green">+</span>def verify_token():   │
+│ <span class="green">M</span> src/api/routes   │ <span class="green">+</span>    payload = jwt..   │
+│ <span class="green">A</span> src/auth/tokens  │ <span class="red">-</span># old auth removed    │
+├────────────────────┴────────────────────────┤
+│ <span class="yellow">Commit:</span> feat(auth): Add JWT authentication │
+│ <span class="dim">Claude added auth - review diff, then [c]ommit</span>  │</pre>
+<p>Review what Claude wrote → Stage → Commit → Push</p>`
+      },
+      f8: {
+        key: 'F8',
+        title: 'Status — Track Your Claude Session',
+        content: `<pre>┌─ Session with Claude ───────────────────────┐
+│ Session:       <span class="green">2h 34m</span>                       │
+│ Claude Tasks:  <span class="cyan">12</span> completed                  │
+│ Files Changed: <span class="yellow">8</span> files                       │
+│ Lines Added:   <span class="green">+847</span>  Removed: <span class="red">-234</span>          │
+│ Current:       <span class="cyan">Adding unit tests...</span>         │
+└─────────────────────────────────────────────┘</pre>
+<p>See how productive your Claude session has been</p>`
+      },
+      f9: {
+        key: 'F9',
+        title: 'Config — A Living Organism',
+        content: `<pre><span class="green">Claude IDE evolves with you.</span>
+
+<span class="yellow">c</span>  AI Customization
+   "Make the tree view show git status"
+   "Add a pomodoro timer to status bar"
+   "Change prompt writer to vim keybindings"
+
+   <span class="dim">→ Claude modifies the IDE for you</span>
+
+<span class="yellow">Themes:</span> Catppuccin, Tokyo Night, Gruvbox...
+<span class="yellow">Prompts:</span> ~/.claude-ide/prompts/ <span class="dim">(edit to tune AI)</span>
+
+<span class="cyan">Every feature is a prompt you can modify.</span>
+<span class="cyan">Every screen can be reshaped by asking.</span></pre>
+<p>Not just config — <span class="green">reshape the entire IDE</span> through conversation.</p>`
+      },
+      f10: {
+        key: 'F10',
+        title: 'Exit — End Session',
+        content: `<pre>┌─────────────────────────────────────────────┐
+│                                             │
+│   <span class="red">End Claude IDE Session?</span>                  │
+│                                             │
+│   <span class="dim">Your conversation history is saved.</span>        │
+│   <span class="dim">Git changes are preserved.</span>                 │
+│                                             │
+│          <span class="green">[Y]es</span>     <span class="dim">[N]o</span>                    │
+│                                             │
+└─────────────────────────────────────────────┘</pre>
+<p>Session data saved. Resume anytime with <span class="cyan">tui</span></p>`
+      },
+      f12: {
+        key: 'F12',
+        title: 'Keys — When Claude Needs F-Keys',
+        content: `<pre><span class="dim"># Claude is running vim and needs F5:</span>
+
+<span class="yellow">Press F12</span> → Passthrough ON
+<span class="dim">Now F5 goes to vim, not Claude IDE</span>
+
+<span class="yellow">Press F12</span> → Passthrough OFF
+<span class="dim">F-keys control IDE again</span>
+
+<span class="green">Scenario:</span> Claude opened vim to edit a file
+→ F12 to let F-keys reach vim
+→ F12 again when done</pre>
+<p>Toggle when Claude's tools need function keys</p>`
+      }
+    };
+
+    let activeKey = null;
+
+    function showScenario(key) {
+      const panel = document.getElementById('scenario-panel');
+      const keyEl = document.getElementById('scenario-key');
+      const titleEl = document.getElementById('scenario-title');
+      const contentEl = document.getElementById('scenario-content');
+
+      // Remove active class from all fkeys
+      document.querySelectorAll('.fkey').forEach(el => el.classList.remove('active'));
+
+      // If clicking same key, toggle off
+      if (activeKey === key) {
+        panel.classList.remove('visible');
+        activeKey = null;
+        return;
+      }
+
+      // Set active key
+      activeKey = key;
+      const scenario = scenarios[key];
+
+      // Update content
+      keyEl.textContent = scenario.key;
+      titleEl.textContent = scenario.title;
+      contentEl.innerHTML = scenario.content;
+
+      // Show panel and highlight key
+      panel.classList.add('visible');
+      document.querySelector(`.fkey[data-key="${key}"]`).classList.add('active');
+    }
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      const key = e.key.toLowerCase();
+      if (key.startsWith('f') && key.length <= 3) {
+        const fNum = key.replace('f', '');
+        if (scenarios['f' + fNum]) {
+          e.preventDefault();
+          showScenario('f' + fNum);
+        }
+      }
+    });
+  </script>
+</body>
+</html>

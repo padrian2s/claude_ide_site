@@ -177,6 +177,36 @@ body {
     color: var(--accent-cyan);
 }
 
+/* Keyboard Hero */
+.keyboard-hero {
+    padding: 60px 20px;
+    background: linear-gradient(180deg, #1a1a2e 0%, var(--bg-dark) 100%);
+    text-align: center;
+}
+
+.keyboard-hero .section-title {
+    margin-bottom: 8px;
+}
+
+.keyboard-hero .section-subtitle {
+    color: var(--fg-dim);
+    margin-bottom: 30px;
+}
+
+.keyboard-container {
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+}
+
+.keyboard-frame {
+    width: 100%;
+    max-width: 1000px;
+    height: 750px;
+    border: none;
+    background: transparent;
+}
+
 /* Video Preview */
 .video-preview {
     padding: 20px;
