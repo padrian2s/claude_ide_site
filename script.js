@@ -18,13 +18,40 @@ function closeVideoModal() {
     video.currentTime = 0;
 }
 
+// Ctrl+P Video Modal Functions
+function openCtrlPModal() {
+    const modal = document.getElementById('ctrlp-modal');
+    const video = document.getElementById('ctrlp-video');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    video.play();
+}
+
+function closeCtrlPModal() {
+    const modal = document.getElementById('ctrlp-modal');
+    const video = document.getElementById('ctrlp-video');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    video.pause();
+    video.currentTime = 0;
+}
+
 // Close modal on background click or Escape key
 document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('video-modal');
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
+    const videoModal = document.getElementById('video-modal');
+    if (videoModal) {
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
                 closeVideoModal();
+            }
+        });
+    }
+
+    const ctrlpModal = document.getElementById('ctrlp-modal');
+    if (ctrlpModal) {
+        ctrlpModal.addEventListener('click', (e) => {
+            if (e.target === ctrlpModal) {
+                closeCtrlPModal();
             }
         });
     }
@@ -32,9 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        const modal = document.getElementById('video-modal');
-        if (modal && modal.classList.contains('active')) {
+        const videoModal = document.getElementById('video-modal');
+        if (videoModal && videoModal.classList.contains('active')) {
             closeVideoModal();
+        }
+        const ctrlpModal = document.getElementById('ctrlp-modal');
+        if (ctrlpModal && ctrlpModal.classList.contains('active')) {
+            closeCtrlPModal();
         }
     }
 });
