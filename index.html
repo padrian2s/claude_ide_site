@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <!-- Video Modal -->
+    <!-- Video Modal - Prompt Writer -->
     <div id="video-modal" class="video-modal">
         <div class="video-modal-content">
             <button class="video-close-btn" onclick="closeVideoModal()">
@@ -19,6 +19,19 @@
             </button>
             <video id="prompt-video" controls>
                 <source src="Claude_Prompt.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- Video Modal - Ctrl+P -->
+    <div id="ctrlp-modal" class="video-modal">
+        <div class="video-modal-content">
+            <button class="video-close-btn" onclick="closeCtrlPModal()">
+                <span class="material-icons">close</span>
+            </button>
+            <video id="ctrlp-video" controls>
+                <source src="ctrl+p.mov" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -55,6 +68,42 @@
         </div>
     </header>
 
+    <!-- Ctrl+P Demo Section -->
+    <section class="ctrlp-demo-section">
+        <div class="demo-container">
+            <div class="demo-video-panel" onclick="openCtrlPModal()">
+                <div class="demo-video-wrapper">
+                    <video muted loop autoplay playsinline>
+                        <source src="ctrl+p.mov" type="video/mp4">
+                    </video>
+                    <div class="demo-play-overlay">
+                        <div class="demo-play-overlay-content">
+                            <span class="material-icons">play_circle</span>
+                            <span class="play-text">See it in action</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="demo-info-panel">
+                <div class="demo-info-header">
+                    <kbd>Ctrl+P</kbd>
+                    <span class="demo-badge">Quick Input</span>
+                </div>
+                <h3>Instant Command Palette</h3>
+                <p>Launch any action from anywhere. Type a command, select a file, or trigger a workflow—all without leaving your current context.</p>
+                <ul class="demo-features">
+                    <li><span class="material-icons">search</span> Fuzzy file search across your project</li>
+                    <li><span class="material-icons">terminal</span> Run commands without switching windows</li>
+                    <li><span class="material-icons">bolt</span> Context-aware suggestions</li>
+                </ul>
+                <div class="demo-hint">
+                    <span class="material-icons">info</span>
+                    Works from any screen. Press Esc to dismiss.
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Keyboard Hero -->
     <section class="keyboard-hero">
         <h2 class="section-title">Your Function Keys, Supercharged</h2>
@@ -85,7 +134,7 @@
             <span class="status-item">F2:Tree</span>
             <span class="status-item">F3:Lizard</span>
             <span class="status-item">F4:Glow</span>
-            <span class="status-item">F5:Favs</span>
+            <span class="status-item">F5:Workflow</span>
             <span class="status-item f7-trigger" onclick="openVideoModal()">F6:Prompt</span>
             <span class="status-item">F7:Git</span>
             <span class="status-item">F8:Status</span>
@@ -189,22 +238,29 @@
                 </div>
             </div>
 
-            <!-- F5 Favorites -->
-            <div class="feature-card">
+            <!-- F5 Workflow Chain -->
+            <div class="feature-card featured">
                 <div class="feature-icon">
                     <kbd>F5</kbd>
                 </div>
-                <h3>Favorites - Project Navigator</h3>
-                <p>Your projects. One keypress away.</p>
+                <h3>Workflow Chain Orchestrator</h3>
+                <p>Multi-project pipelines with visual dependencies.</p>
                 <div class="feature-terminal mini">
-<pre>│ All Folders     │ ★ Favorites    │
-├─────────────────┼────────────────┤
-│ ☆ work/api      │ ★ main-app     │
-│ ★ work/main-app │ ★ dotfiles     │</pre>
+<pre>│ Workflows       │ Chain Nodes          │
+├─────────────────┼──────────────────────┤
+│ ▸ Deploy Prod   │ 1. Build API         │
+│   Test Suite    │ 2. Run Tests         │
+│   Full CI/CD    │ 3. Deploy (→1,2)     │</pre>
                 </div>
                 <div class="shortcuts">
-                    <span class="shortcut"><kbd>Space</kbd> Copy path</span>
-                    <span class="shortcut"><kbd>/</kbd> Search</span>
+                    <span class="shortcut"><kbd>n</kbd> New workflow</span>
+                    <span class="shortcut"><kbd>Enter</kbd> Run</span>
+                    <span class="shortcut"><kbd>e</kbd> Edit</span>
+                </div>
+                <div class="commander-features">
+                    <span class="cmd-feat"><span class="material-icons">account_tree</span> Dependencies</span>
+                    <span class="cmd-feat"><span class="material-icons">play_circle</span> Real-time</span>
+                    <span class="cmd-feat"><span class="material-icons">visibility</span> Live output</span>
                 </div>
             </div>
 
@@ -232,25 +288,25 @@
                 <p class="feature-note">Stream → Watch → Edit → Accept</p>
             </div>
 
-            <!-- F7 Git (Lazygit) -->
+            <!-- F7 Git -->
             <div class="feature-card">
                 <div class="feature-icon">
                     <kbd>F7</kbd>
                 </div>
                 <h3>Git - Lazygit</h3>
-                <p>Git made visual and fast.</p>
-                <div class="feature-terminal mini">
-<pre>┌ Branches ──────┬─ Commits ─────────────┐
-│ ▸ main         │ abc123 Add feature    │
-│   feature-x    │ def456 Fix bug        │
-│   hotfix       │ ghi789 Update docs    │
-└────────────────┴───────────────────────┘</pre>
+                <p>Full-featured git interface. Stage, commit, push, pull.</p>
+                <div class="feature-terminal mini dark">
+<pre>┌─ Status ────────────────────────┐
+│ ▸ M  src/api.py                 │
+│   A  tests/test_api.py          │
+│   D  old_file.py                │
+└─────────────────────────────────┘</pre>
                 </div>
-                <ul>
-                    <li>Stage, commit, push in seconds</li>
-                    <li>Branch management made easy</li>
-                    <li>Interactive rebase support</li>
-                </ul>
+                <div class="shortcuts">
+                    <span class="shortcut"><kbd>Space</kbd> Stage</span>
+                    <span class="shortcut"><kbd>c</kbd> Commit</span>
+                    <span class="shortcut"><kbd>p</kbd> Push</span>
+                </div>
             </div>
 
             <!-- F8 Status -->
@@ -259,18 +315,16 @@
                     <kbd>F8</kbd>
                 </div>
                 <h3>Status - Session Metrics</h3>
-                <p>Track your Claude Code session.</p>
+                <p>Track your AI usage and session costs.</p>
                 <div class="feature-terminal mini">
-<pre>┌─ Session Metrics ──────────────────────┐
-│ Tokens: 125,432 in │ 45,678 out        │
-│ Cost: $2.34        │ Duration: 1h 23m  │
-│ Model: opus-4      │ Messages: 42      │
-└────────────────────────────────────────┘</pre>
+<pre>┌─ Session Metrics ───────────────┐
+│ Tokens In:      12,450          │
+│ Tokens Out:      3,280          │
+│ Est. Cost:      $0.42           │
+│ Messages:       24              │
+└─────────────────────────────────┘</pre>
                 </div>
-                <div class="shortcuts">
-                    <span class="shortcut"><kbd>r</kbd> Refresh</span>
-                    <span class="shortcut"><kbd>q</kbd> Quit</span>
-                </div>
+                <p class="feature-note">Auto-refreshes every 5 seconds</p>
             </div>
 
             <!-- F9 Config -->
@@ -279,13 +333,12 @@
                     <kbd>F9</kbd>
                 </div>
                 <h3>Config Panel</h3>
-                <p>Make it yours. The entire IDE runs on AI prompts—modify them to change how it works.</p>
+                <p>Themes, status bar position, and AI-assisted screen customization.</p>
                 <div class="feature-terminal mini">
-<pre><span class="dim"># Every behavior is a prompt you control</span>
-~/.claude-ide/prompts/
-├── tree_view.md      <span class="dim"># File browser logic</span>
-├── prompt_writer.md  <span class="dim"># AI enhancement</span>
-└── your_custom.md    <span class="dim"># Your additions</span></pre>
+<pre><span class="dim"># Press 'c' to customize any screen with AI</span>
+Select screen → Describe changes
+→ AI generates code → Preview diff
+→ Apply with hot-reload</pre>
                 </div>
                 <div class="themes">
                     <span class="theme catppuccin">Catppuccin</span>
@@ -294,7 +347,7 @@
                     <span class="theme dracula">Dracula</span>
                     <span class="theme nord">Nord</span>
                 </div>
-                <p class="feature-note">8 themes • AI prompts you can edit • Extend the IDE yourself</p>
+                <p class="feature-note">8 themes • AI code customization • Auto-backup & hot-reload</p>
             </div>
         </div>
     </section>
@@ -347,23 +400,25 @@ authentication with JWT tokens, including:
             <div class="shortcut-group">
                 <h4>Navigation</h4>
                 <div class="shortcut-item"><kbd>F1-F9</kbd> <span>Jump to window</span></div>
-                <div class="shortcut-item"><kbd>Shift+←/→</kbd> <span>Navigate terminals</span></div>
-                <div class="shortcut-item"><kbd>Ctrl+T</kbd> <span>Add new terminal</span></div>
+                <div class="shortcut-item"><kbd>Shift+←/→</kbd> <span>Navigate windows</span></div>
+                <div class="shortcut-item"><kbd>Ctrl+T</kbd> <span>New terminal</span></div>
+                <div class="shortcut-item"><kbd>Ctrl+X</kbd> <span>Close terminal</span></div>
+                <div class="shortcut-item"><kbd>Ctrl+P</kbd> <span>Quick input popup</span></div>
+                <div class="shortcut-item"><kbd>Ctrl+H</kbd> <span>Help overlay</span></div>
+            </div>
+            <div class="shortcut-group">
+                <h4>Prompt Writer (F6)</h4>
+                <div class="shortcut-item"><kbd>Ctrl+G</kbd> <span>AI Enhance</span></div>
+                <div class="shortcut-item"><kbd>Ctrl+R</kbd> <span>Send to F1</span></div>
+                <div class="shortcut-item"><kbd>Ctrl+S</kbd> <span>Save</span></div>
+                <div class="shortcut-item"><kbd>Ctrl+T</kbd> <span>Templates</span></div>
+                <div class="shortcut-item"><kbd>Ctrl+B</kbd> <span>Browse prompts</span></div>
+            </div>
+            <div class="shortcut-group">
+                <h4>System</h4>
                 <div class="shortcut-item"><kbd>F10</kbd> <span>Exit session</span></div>
                 <div class="shortcut-item"><kbd>F12</kbd> <span>Toggle passthrough</span></div>
-            </div>
-            <div class="shortcut-group">
-                <h4>Prompt Writer</h4>
-                <div class="shortcut-item"><kbd>Ctrl+G</kbd> <span>AI Enhance</span></div>
-                <div class="shortcut-item"><kbd>Ctrl+S</kbd> <span>Save</span></div>
-                <div class="shortcut-item"><kbd>Ctrl+C</kbd> <span>Copy all</span></div>
-                <div class="shortcut-item"><kbd>Ctrl+T</kbd> <span>Templates</span></div>
-            </div>
-            <div class="shortcut-group">
-                <h4>Autocomplete</h4>
-                <div class="shortcut-item"><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <span>Quick select</span></div>
-                <div class="shortcut-item"><kbd>Tab</kbd> <span>Accept suggestion</span></div>
-                <div class="shortcut-item"><kbd>Esc</kbd> <span>Hide dropdown</span></div>
+                <div class="shortcut-item"><kbd>Shift+F1-F9</kbd> <span>Go to terminal 1-9</span></div>
             </div>
         </div>
     </section>
@@ -387,10 +442,10 @@ tmux session "claude-ide-{pid}"
 ├── Window 2 (F2): Tree ────────────── <span class="tech">Python/Textual</span>
 ├── Window 3 (F3): Lizard ──────────── <span class="tech">Python/Textual + Lizard</span>
 ├── Window 4 (F4): Glow ────────────── <span class="tech">Go binary</span>
-├── Window 5 (F5): Favorites ───────── <span class="tech">Python/Textual</span>
+├── Window 5 (F5): Workflow ───────── <span class="tech">Python/Textual</span>
 ├── Window 6 (F6): Prompt Writer ───── <span class="tech">Python/Textual + Claude</span>
 ├── Window 7 (F7): Git ────────────── <span class="tech">Lazygit</span>
-├── Window 8 (F8): Status ─────────── <span class="tech">Python/Textual</span>
+├── Window 8 (F8): Status ──────────── <span class="tech">Python/Textual</span>
 └── Window 9 (F9): Config ──────────── <span class="tech">Python/Textual</span>
 </pre>
                 </div>
@@ -410,12 +465,12 @@ tmux session "claude-ide-{pid}"
                 <span>AI enhancement</span>
             </div>
             <div class="tech-item">
-                <strong>Lizard</strong>
-                <span>Code complexity</span>
+                <strong>Lazygit</strong>
+                <span>Git interface</span>
             </div>
             <div class="tech-item">
-                <strong>Lazygit</strong>
-                <span>Git made visual</span>
+                <strong>Lizard</strong>
+                <span>Code complexity</span>
             </div>
         </div>
     </section>
@@ -494,8 +549,8 @@ tmux session "claude-ide-{pid}"
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <p class="footer-tagline">Built with tmux + Textual + Claude + Lizard + Lazygit</p>
-            <p class="footer-powered">Powered by keystrokes ⚡</p>
+            <p class="footer-tagline">Built with tmux + Textual + Claude + Lazygit + Lizard</p>
+            <p class="footer-powered">Powered by keystrokes</p>
             <div class="footer-links">
                 <a href="https://github.com/Textualize/textual">Textual</a>
                 <a href="https://github.com/jesseduffield/lazygit">Lazygit</a>
