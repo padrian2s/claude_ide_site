@@ -19,27 +19,28 @@ Press an F-key. You're there.
 ## The Ecosystem
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  F1:Term1  F2:Term2  F3:Tree  F4:Lizard  F5:Glow  F6:Favs   │
-│  F7:Prompt  F9:Config  F10:Exit  F12:Keys                   │
-└─────────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ F1:Term  F2:Tree  F3:Lizard  F4:Glow  F5:Workflow  F6:Prompt  F7:Git  F8:Status │
+│ F9:Config  F10:Exit  ^H:Help  F12:Keys                                          │
+└───────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## F1/F2: Twin Terminals
+## F1: Dynamic Terminals
 
-Two shells. Always ready.
+One default terminal. Add as many as you need.
 
 - Run your Claude Code in F1
-- Run your backend/frontend in F2
-- Switch instantly with a keypress
+- `Ctrl+T` creates new terminals (T2, T3...)
+- `Shift+F1-F9` switches between terminals
+- `Ctrl+X` closes current terminal
 
 No splitting. No resizing. Full screen, full focus.
 
 ---
 
-## F3: Tree View + Smart Search
+## F2: Tree View + Smart Search
 
 **Not just a file browser. A code navigator.**
 
@@ -63,7 +64,7 @@ Find anything in milliseconds. Not minutes.
 
 ---
 
-## F4: Lizard - Code Complexity Analyzer
+## F3: Lizard - Code Complexity Analyzer
 
 **Know your code's health at a glance.**
 
@@ -132,7 +133,7 @@ Lizard sees it. Lizard judges it.
 
 ---
 
-## F5: Glow - Markdown Viewer
+## F4: Glow - Markdown Viewer
 
 Beautiful markdown rendering in the terminal.
 
@@ -144,34 +145,31 @@ Because `cat README.md` is ugly.
 
 ---
 
-## F6: Favorites - Project Navigator
+## F5: Workflow Chain Orchestrator
 
-**Your projects. One keypress away.**
+**Multi-project pipelines with visual dependencies.**
 
 ```
-┌─────────────────────┬─────────────────────┐
-│   All Folders       │   * Favorites       │
-├─────────────────────┼─────────────────────┤
-│   work/api-server   │ * work/main-app     │
-│ * work/main-app     │ * personal/dotfiles │
-│   work/microservice │ * personal/my_env   │
-│   personal/blog     │                     │
-└─────────────────────┴─────────────────────┘
+┌─────────────────────┬─────────────────────────┐
+│   Workflows         │   Chain Definition      │
+├─────────────────────┼─────────────────────────┤
+│ ▸ Deploy Prod       │ 1. Build API            │
+│   Test Suite        │ 2. Run Tests            │
+│   Full CI/CD        │ 3. Deploy (→1,2)        │
+└─────────────────────┴─────────────────────────┘
 ```
 
-- `/` - Search folders instantly
-- `Enter` - Add to favorites
-- `Space` - **Copy path to clipboard**
-- `Tab` - Switch panels
-- `a` - Admin: manage root folders
+- `n` - Create new workflow
+- `e` - Edit selected workflow
+- `Enter` - Run workflow chain
+- Real-time execution with live output
+- Dependencies between nodes
 
-**Configure once. Navigate forever.**
-
-Your `~/work` and `~/personal` folders scanned automatically. Star what matters. Copy paths with a keypress.
+**Chain prompts across projects. Execute in sequence or parallel.**
 
 ---
 
-## F7: Prompt Writer - AI-Powered Editor
+## F6: Prompt Writer - AI-Powered Editor
 
 **Where your prompts become powerful.**
 
@@ -216,6 +214,46 @@ The AI suggests. You decide. Edit right in the preview before accepting.
 
 ---
 
+## F7: Git - Lazygit
+
+**Full-featured git interface in your IDE.**
+
+```
+┌─ Status ─────────────────────────────────┐
+│ ▸ M  src/api.py                          │
+│   A  tests/test_api.py                   │
+│   D  old_file.py                         │
+└──────────────────────────────────────────┘
+```
+
+- Stage, commit, push, pull
+- Branch management
+- Conflict resolution
+- All keyboard-driven
+
+---
+
+## F8: Status - Session Metrics
+
+**Track your AI usage and session costs.**
+
+```
+┌─ Session Metrics ────────────────────────┐
+│ Tokens In:     12,450   Cache Read: 8,200│
+│ Tokens Out:     3,280   Cache Write: 4,100│
+│ Est. Cost:     $0.42                      │
+│ Messages:      24       Duration: 1h 23m  │
+│ Model:         claude-opus-4-5            │
+└───────────────────────────────────────────┘
+```
+
+- Auto-refreshes every 5 seconds
+- Token usage breakdown
+- Cost estimation
+- Git branch info
+
+---
+
 ## F9: Config Panel
 
 **Make it yours.**
@@ -230,13 +268,13 @@ The AI suggests. You decide. Edit right in the preview before accepting.
 │   Dracula             [sample]       │
 │   Nord                [sample]       │
 └──────────────────────────────────────┘
-  Enter: Apply  |  p: Toggle Position  |  q: Quit
+  Enter: Apply  |  p: Position  |  c: AI Customize
 ```
 
 - 8 beautiful themes
 - Status bar top or bottom
-- Changes apply instantly
-- Persisted across sessions
+- AI-assisted screen customization
+- Auto-backup and hot-reload
 
 ---
 
@@ -244,8 +282,12 @@ The AI suggests. You decide. Edit right in the preview before accepting.
 
 | Key | Action |
 |-----|--------|
-| `F1-F7, F9` | Jump to window |
+| `F1-F9` | Jump to window |
 | `Shift+Left/Right` | Previous/Next window |
+| `Ctrl+T` | New terminal |
+| `Ctrl+X` | Close terminal |
+| `Ctrl+P` | Quick input popup |
+| `Ctrl+H` | Help overlay |
 | `F10` | Exit (kill session) |
 | `F12` | Toggle passthrough mode |
 
@@ -263,13 +305,14 @@ Status bar shows `PASSTHROUGH` when active.
 ```
 tmux session "claude-ide-{pid}"
 │
-├── Window 1 (F1): Terminal 1 ──────── zsh
-├── Window 2 (F2): Terminal 2 ──────── zsh
-├── Window 3 (F3): Tree ────────────── Python/Textual
-├── Window 4 (F4): Lizard ──────────── Python/Textual + Lizard
-├── Window 5 (F5): Glow ────────────── Go binary
-├── Window 6 (F6): Favorites ───────── Python/Textual
-├── Window 7 (F7): Prompt Writer ───── Python/Textual + Claude API
+├── Window 1 (F1): Terminal ─────────── zsh (Ctrl+T adds more)
+├── Window 2 (F2): Tree ────────────── Python/Textual
+├── Window 3 (F3): Lizard ──────────── Python/Textual + Lizard
+├── Window 4 (F4): Glow ────────────── Go binary
+├── Window 5 (F5): Workflow ─────────── Python/Textual
+├── Window 6 (F6): Prompt Writer ───── Python/Textual + Claude
+├── Window 7 (F7): Git ─────────────── Lazygit
+├── Window 8 (F8): Status ──────────── Python/Textual
 └── Window 9 (F9): Config ──────────── Python/Textual
 ```
 
@@ -290,16 +333,21 @@ tmux session "claude-ide-{pid}"
 ## What You Get
 
 ```
-my_env/
-├── tui_env.py          # Main launcher
-├── tree_view.py        # File browser + viewer
-├── config_panel.py     # Theme settings
-├── favorites.py        # Project navigator
-├── prompt_writer.py    # AI prompt editor
-├── prompt_words.txt    # 1,300+ word corpus
-├── lizard_tui.py       # Code complexity analyzer
-├── start.sh            # Quick launcher
-└── CLAUDE.md           # Documentation
+claude_ide/
+├── tui_env.py           # Main launcher
+├── tree_view.py         # File browser + viewer + file manager
+├── config_panel.py      # Theme settings + AI customization
+├── workflow_chain.py    # Workflow chain orchestrator
+├── workflow_executor.py # tmux execution engine
+├── workflow_models.py   # Workflow data models
+├── favorites.py         # Project navigator
+├── prompt_writer.py     # AI prompt editor
+├── quick_input.py       # Quick input popup (Ctrl+P)
+├── status_viewer.py     # Session metrics viewer
+├── lizard_tui.py        # Code complexity analyzer
+├── ai_customizer.py     # AI-assisted code modification
+├── start.sh             # Quick launcher
+└── CLAUDE.md            # Documentation
 ```
 
 ---
@@ -308,10 +356,10 @@ my_env/
 
 ```bash
 # Install dependencies
-brew install tmux fzf ripgrep glow
+brew install tmux fzf ripgrep glow lazygit
 pip install textual anthropic lizard
 
-# Set up AI (optional, for Prompt Writer)
+# Set up AI (optional, for Prompt Writer & AI Customization)
 export ANTHROPIC_API_KEY="your-key"
 
 # Launch
@@ -384,17 +432,17 @@ We use battle-tested foundations: tmux, Python, Unix.
 ```
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  F1:Term1  F2:Term2  F3:Tree  F4:Lizard  F5:Glow  F6:Favs  │
-│                      ^^^^^^^^                               │
-│                     [You are here]                          │
-└─────────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────────────────────────┐
+│ F1:Term  F2:Tree  F3:Lizard  F4:Glow  F5:Workflow  F6:Prompt  F7:Git  F8:Status │
+│          ^^^^^^^^                                                                │
+│         [You are here]                                                           │
+└───────────────────────────────────────────────────────────────────────────────┘
 ```
 
 **Welcome to your new workspace.**
 
 ---
 
-*Built with tmux + Textual + Claude + Lizard. Powered by keystrokes.*
+*Built with tmux + Textual + Claude + Lazygit + Lizard. Powered by keystrokes.*
 
 `#ClaudeIDE #TerminalLife #TUI #DeveloperTools #Productivity #AITools #CodeQuality`

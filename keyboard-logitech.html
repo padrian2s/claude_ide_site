@@ -414,7 +414,7 @@
       <div class="key kfn xs fkey" data-key="f3" onclick="showScenario('f3')">F3<br><span class="fn-label">Lizard</span></div>
       <div class="key kfn xs fkey" data-key="f4" onclick="showScenario('f4')">F4<br><span class="fn-label">Glow</span></div>
       <div class="gap"></div>
-      <div class="key kfn xs fkey" data-key="f5" onclick="showScenario('f5')">F5<br><span class="fn-label">Favs</span></div>
+      <div class="key kfn xs fkey" data-key="f5" onclick="showScenario('f5')">F5<br><span class="fn-label">Work</span></div>
       <div class="key kfn xs fkey" data-key="f6" onclick="showScenario('f6')">F6<br><span class="fn-label">Prompt</span></div>
       <div class="key kfn xs fkey" data-key="f7" onclick="showScenario('f7')">F7<br><span class="fn-label">Git</span></div>
       <div class="key kfn xs fkey" data-key="f8" onclick="showScenario('f8')">F8<br><span class="fn-label">Status</span></div>
@@ -607,15 +607,15 @@
       },
       f5: {
         key: 'F5',
-        title: 'Favs — Quick Switch Projects',
-        content: `<pre>│ Recent            │ ★ Favorites        │
-├───────────────────┼────────────────────┤
-│ <span class="yellow">★</span> ~/work/api      │ <span class="yellow">★</span> api <span class="dim">(current)</span>    │
-│   ~/work/frontend │ <span class="yellow">★</span> frontend          │
-│   ~/personal/blog │ <span class="yellow">★</span> dotfiles          │
-│                   │                    │
-│ <span class="dim">Space: copy path</span>  │ <span class="dim">Enter: cd + F1</span>     │</pre>
-<p><span class="cyan">Enter</span> on frontend → Opens in F1 → Ask Claude about that project</p>`
+        title: 'Workflow — Multi-Project Pipelines',
+        content: `<pre>│ Workflows          │ Chain Definition    │
+├────────────────────┼─────────────────────┤
+│ <span class="green">▸</span> Deploy Prod      │ 1. Build API        │
+│   Test Suite       │ 2. Run Tests        │
+│   Full CI/CD       │ 3. Deploy (→1,2)    │
+│                    │                     │
+│ <span class="dim">n: new workflow</span>   │ <span class="dim">Enter: run chain</span>   │</pre>
+<p><span class="cyan">n</span> new · <span class="cyan">e</span> edit · <span class="cyan">Enter</span> run → Real-time execution with live output</p>`
       },
       f6: {
         key: 'F6',
@@ -651,15 +651,16 @@ and logging for the OAuth flow..."
       },
       f8: {
         key: 'F8',
-        title: 'Status — Track Your Claude Session',
-        content: `<pre>┌─ Session with Claude ───────────────────────┐
-│ Session:       <span class="green">2h 34m</span>                       │
-│ Claude Tasks:  <span class="cyan">12</span> completed                  │
-│ Files Changed: <span class="yellow">8</span> files                       │
-│ Lines Added:   <span class="green">+847</span>  Removed: <span class="red">-234</span>          │
-│ Current:       <span class="cyan">Adding unit tests...</span>         │
+        title: 'Status — Session Metrics & Cost',
+        content: `<pre>┌─ Session Metrics ───────────────────────────┐
+│ Tokens In:     <span class="cyan">12,450</span>   Cache Read: <span class="green">8,200</span>    │
+│ Tokens Out:    <span class="cyan">3,280</span>    Cache Write: <span class="yellow">4,100</span>   │
+│ Est. Cost:     <span class="green">$0.42</span>                         │
+│ Messages:      <span class="cyan">24</span>       Duration: <span class="cyan">1h 23m</span>     │
+│ Model:         <span class="yellow">claude-opus-4-5</span>               │
+│ Branch:        <span class="green">feature/auth</span>                  │
 └─────────────────────────────────────────────┘</pre>
-<p>See how productive your Claude session has been</p>`
+<p>Auto-refreshes every 5 seconds. Track your AI usage and costs.</p>`
       },
       f9: {
         key: 'F9',
